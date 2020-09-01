@@ -2,9 +2,12 @@ import React, { Fragment, useState, useEffect } from 'react';
 import AppBarComponent from '../../component/AppBar/AppBarComponent';
 import axios from 'axios';
 import Skeleton from "@material-ui/lab/Skeleton";
+import Link from "@material-ui/core/Link";
 
 import { Button, Divider, Card, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography, CardHeader, Menu, MenuItem, Fab, Hidden, Tooltip, } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
+
+import { showDetail } from "./Container/DetailUser";
 
 const BASE_URL = 'https://dummyapi.io/data/api';
 const APP_ID = '5f4e87875e2cb0570e9b78be';
@@ -75,11 +78,9 @@ const useStyles = makeStyles((theme) => ({
 function ListUser(props) {
 
     const classes = useStyles();
-    const { dataUser } = props;
+    const { dataUser, showDetail } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-
-    // const [promotionState, promotionActions] = promotionStore();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -120,12 +121,8 @@ function ListUser(props) {
                                         open={open}
                                         onClose={handleClose}
                                     >
-                                        {/* {permissionEditCategoryProduct && */}
-                                        {/* <MenuItem onClick={() => props.doEdit(dataMall)}>Edit</MenuItem> */}
-
-
-                                        <Button color="primary">
-                                            Close
+                                        <Button color="primary" onClick={showDetail}>
+                                            Detail
                                         </Button>
 
                                     </Menu>
@@ -156,7 +153,13 @@ function User() {
             .finally(() => setLoading(false));
     }, []);
 
-    console.log(data);
+    // console.log(data);
+    const handleDetailMenu = (value) => {
+        showDetail(
+            "Detail User",
+            value,
+        )
+    };
 
     return (
         <AppBarComponent>
@@ -171,14 +174,12 @@ function User() {
                             <ListUser
                                 key={key}
                                 dataUser={value}
+                                showDetail={() => handleDetailMenu(value)}
                             />
                         )
                     })}
                 </Fragment>
             </Grid>
-
-
-
 
         </AppBarComponent>
     )
