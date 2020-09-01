@@ -17,7 +17,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
-        flexGrow: 1,
+        flexGrow: .3,
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(5),
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
+            marginLeft: theme.spacing(7),
             width: 'auto',
         },
     },
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function AppBarComponent() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -132,31 +132,32 @@ export default function PrimarySearchAppBar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
-                    </Badge>
+                <IconButton color="inherit">
+                    <Typography variant="subtitle1">
+                        User
+                    </Typography>
                 </IconButton>
-                <p>Messages</p>
             </MenuItem>
             <MenuItem>
-                <IconButton aria-label="show 11 new notifications" color="inherit">
-                    <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
+                <IconButton color="inherit">
+                    <Typography variant="subtitle1">
+                        Post
+                    </Typography>
                 </IconButton>
-                <p>Notifications</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
+            <MenuItem>
+                <IconButton color="inherit">
+                    <Typography variant="subtitle1">
+                        Comment
+                    </Typography>
                 </IconButton>
-                <p>Profile</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton color="inherit">
+                    <Typography variant="subtitle1">
+                        Tag
+                    </Typography>
+                </IconButton>
             </MenuItem>
         </Menu>
     );
@@ -165,51 +166,44 @@ export default function PrimarySearchAppBar() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Material-UI
-          </Typography>
+
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
-                            <SearchIcon />
+                            <Typography variant="h6">
+                                Home
+                            </Typography>
                         </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <MailIcon />
+                        <IconButton color="inherit">
+                            <Badge color="secondary">
+                                <Typography variant="h6">
+                                    User
+                                </Typography>
                             </Badge>
                         </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon />
+                        <IconButton color="inherit">
+                            <Badge color="secondary">
+                                <Typography variant="h6">
+                                    Post
+                                </Typography>
+                            </Badge>
+                        </IconButton>
+                        <IconButton color="inherit">
+                            <Badge color="secondary">
+                                <Typography variant="h6">
+                                    Comment
+                            </Typography>
                             </Badge>
                         </IconButton>
                         <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
+                            edge="start"
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <Typography variant="h6">
+                                Tag
+                            </Typography>
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>
