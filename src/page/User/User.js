@@ -1,8 +1,11 @@
 import React from 'react';
+import AppBarComponent from '../../component/AppBar/AppBarComponent';
 
 function User() {
     return (
-        <p>User</p>
+        <AppBarComponent>
+            <p>User</p>
+        </AppBarComponent>
     )
 }
 

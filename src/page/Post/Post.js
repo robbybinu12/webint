@@ -1,9 +1,12 @@
 import React from 'react';
+import AppBarComponent from '../../component/AppBar/AppBarComponent';
 
 
 function Post() {
     return (
-        <p>Post</p>
+        <AppBarComponent>
+            <p>Post</p>
+        </AppBarComponent>
     )
 }
 

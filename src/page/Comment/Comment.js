@@ -1,8 +1,11 @@
 import React from 'react';
+import AppBarComponent from '../../component/AppBar/AppBarComponent';
 
 function Comment() {
     return (
-        <p>Comment</p>
+        <AppBarComponent>
+            <p>Comment</p>
+        </AppBarComponent>
     )
 }
 

@@ -1,10 +1,13 @@
 import React from 'react';
+import AppBarComponent from '../../component/AppBar/AppBarComponent';
 
 
 function Tag() {
 
     return (
-        <p>Tag</p>
+        <AppBarComponent>
+            <p>Tag</p>
+        </AppBarComponent>
     )
 
 }

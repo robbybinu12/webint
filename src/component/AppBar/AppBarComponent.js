@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,12 +9,9 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+
+import history from '../History/History';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -77,15 +75,20 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
+    mainName: {
+        margin: "50px"
+    }
 }));
 
-export default function AppBarComponent() {
+export default function AppBarComponent(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const { children } = props;
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -132,28 +135,36 @@ export default function AppBarComponent() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton color="inherit">
+                <IconButton color="inherit" onClick={() => {
+                    history.push("/user");
+                }}>
                     <Typography variant="subtitle1">
                         User
                     </Typography>
                 </IconButton>
             </MenuItem>
             <MenuItem>
-                <IconButton color="inherit">
+                <IconButton color="inherit" onClick={() => {
+                    history.push("/post");
+                }}>
                     <Typography variant="subtitle1">
                         Post
                     </Typography>
                 </IconButton>
             </MenuItem>
             <MenuItem>
-                <IconButton color="inherit">
+                <IconButton color="inherit" onClick={() => {
+                    history.push("/comment");
+                }}>
                     <Typography variant="subtitle1">
                         Comment
                     </Typography>
                 </IconButton>
             </MenuItem>
             <MenuItem>
-                <IconButton color="inherit">
+                <IconButton color="inherit" onClick={() => {
+                    history.push("/tag");
+                }}>
                     <Typography variant="subtitle1">
                         Tag
                     </Typography>
@@ -169,28 +180,40 @@ export default function AppBarComponent() {
 
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
-                            <Typography variant="h6">
-                                Home
-                            </Typography>
+                            <IconButton color="inherit" onClick={() => {
+                                history.push("/");
+                            }}>
+                                <Badge color="secondary">
+                                    <Typography variant="h6">
+                                        User
+                                </Typography>
+                                </Badge>
+                            </IconButton>
                         </div>
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton color="inherit">
+                        <IconButton color="inherit" onClick={() => {
+                            history.push("/user");
+                        }}>
                             <Badge color="secondary">
                                 <Typography variant="h6">
                                     User
                                 </Typography>
                             </Badge>
                         </IconButton>
-                        <IconButton color="inherit">
+                        <IconButton color="inherit" onClick={() => {
+                            history.push("/post");
+                        }}>
                             <Badge color="secondary">
                                 <Typography variant="h6">
                                     Post
                                 </Typography>
                             </Badge>
                         </IconButton>
-                        <IconButton color="inherit">
+                        <IconButton color="inherit" onClick={() => {
+                            history.push("/comment");
+                        }}>
                             <Badge color="secondary">
                                 <Typography variant="h6">
                                     Comment
@@ -200,6 +223,9 @@ export default function AppBarComponent() {
                         <IconButton
                             edge="start"
                             color="inherit"
+                            onClick={() => {
+                                history.push("/tag");
+                            }}
                         >
                             <Typography variant="h6">
                                 Tag
@@ -221,6 +247,10 @@ export default function AppBarComponent() {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+
+            <main className={classes.mainName}>
+                {children}
+            </main>
         </div>
     );
 }
