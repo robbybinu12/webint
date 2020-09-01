@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Router, Route, Switch } from 'react-router-dom';
+import { withRouter } from "react-router";
+import User from './page/User/User';
+import Comment from './page/Comment/Comment';
+import Post from './page/Post/Post';
+import Tag from './page/Tag/Tag';
+import AppBarComponent from './component/AppBar/AppBarComponent';
+
+import History from './component/History/History';
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={History}>
+      <Switch>
+        <Route exact path="/" name="User" component={User} />
+        <Route exact path="/user" name="User" component={User} />
+        <Route exact path="/comment" name="Comment" component={Comment} />
+        <Route exact path="/post" name="Post" component={Post} />
+        <Route exact path="/tag" name="Tag" component={Tag} />
+      </Switch>
+    </Router>
+
+    // <AppBarComponent />
   );
 }
 
-export default App;
+export default withRouter(App);
